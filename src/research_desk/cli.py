@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 from .desk import ResearchDesk
@@ -27,7 +28,14 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Published claims: {len(report.claims)} | Rejected: {len(report.rejected)} "
           f"| Citation coverage: {report.citation_coverage:.0%}")
     if args.cmd == "report" and args.out:
-        Path(args.out).write_text(report.markdown, encoding="utf-8")
+        out = Path(args.out)
+        if out.suffix.lower() != ".md":
+            print(f"error: --out must be a .md file (got {args.out})",
+                  file=sys.stderr)
+            return 2
+        if out.exists():
+            print(f"warning: overwriting existing file {out}", file=sys.stderr)
+        out.write_text(report.markdown, encoding="utf-8")
         print(f"Wrote {args.out}")
     return 0
 

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "multi-agent-research-desk"
-version = "0.1.0"
-description = "Researcher + writer + fact-checker desk with consensus logic and verified citations"
+version = "0.1.1"
+description = "Researcher + writer + fact-checker desk with consensus logic and citation-checked claims"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "Lionel Sim", email = "lionel@theaicapitol.com"}]
